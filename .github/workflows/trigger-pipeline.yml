@@ -16,8 +16,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::520864642809:role/GitHubActionsTriggerPipelineRole
-          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::427212782605:policy/dev-pipeline
+          aws-region: ap-south-1
 
       - name: Start AWS CodePipeline Execution
         run: |
