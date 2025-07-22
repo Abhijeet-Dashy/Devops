@@ -2,6 +2,8 @@ package test
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"testing"
 	"time"
 
@@ -10,16 +12,30 @@ import (
 	"github.com/aws/aws-sdk-go/service/codepipeline"
 	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
 	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/joho/godotenv"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestTerraformAwsCodePipeline(t *testing.T) {
 	t.Parallel()
+	err := godotenv.Load("../.env") // Assuming .env is in the root, one level up from /test
+	if err != nil {
+		log.Println("No .env file found, relying on environment variables")
+	}
+
+	// Read the GitHub token from the environment (now loaded from .env)
+	githubToken := os.Getenv("GITHUB_TOKEN")
+	if githubToken == "" {
+		t.Fatal("GITHUB_TOKEN not set in .env file or environment.")
+	}
 
 	terraformDir := "../terraform"
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: terraformDir,
+		Vars: map[string]interface{}{
+			"github_token": githubToken,
+		},
 	}
 
 	// Clean up after test
