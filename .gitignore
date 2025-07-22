@@ -7,5 +7,3 @@ test/terraform.tfstate
 !terraform/main.tf
 !terraform/outputs.tf
 !terraform/variables.tf
-
-.env
