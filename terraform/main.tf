@@ -156,7 +156,7 @@ resource "aws_codepipeline" "pipeline" {
 
 #-----------------------------------------------------github connection------------------------------------------------------
 data "aws_codestarconnections_connection" "github" {
-  arn = "arn:aws:codeconnections:us-east-1:520864642809:connection/af9596d7-5b27-4a25-b86d-e035a37e86f1"
+  arn = "arn:aws:codeconnections:ap-south-1:427212782605:connection/53087b3f-454e-457d-ae72-1d14387f2ab2"
 }
 
 
